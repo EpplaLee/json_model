@@ -77,8 +77,8 @@ bool walk(String srcDir, String distDir, String tag ) {
       //将生成的模板输出
       var p=f.path.replaceFirst(srcDir, distDir).replaceFirst(".json", ".dart");
       File(p)..createSync(recursive: true)..writeAsStringSync(dist);
-      print('---------80: {path.separator}');
-      var relative=p.replaceFirst(distDir+'/', "");
+      var relative=p.replaceFirst(distDir+path.separator, "");
+      relative = relative.replaceAll('\\', '/');
       indexFile+="export '$relative' ; \n";
     }
   });
